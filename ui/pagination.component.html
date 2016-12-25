@@ -1,0 +1,25 @@
+
+<ul *ngIf="total > 0" class="pagination  pagination-sm" >
+    <li class="pagination-first page-item"
+          [class.disabled]="page == 0">
+      <a class="page-link" href (click)="selectPage(0, $event)"><span class="glyphicon glyphicon-step-backward" aria-hidden=true></span></a>
+    </li>
+
+    <li *ngIf="page > 0" class="pagination-prev page-item"
+          [class.disabled]="page == 0">
+      <a class="page-link" href (click)="selectPage(page - 1, $event)"><span class="glyphicon glyphicon-chevron-left" aria-hidden=true></span></a>
+    </li>
+
+
+    <li *ngFor="let pg of pages" class="pagination-page page-item" [class.active]="pg != null && page == pg.page">
+      <a *ngIf="pg && showPageLink(pg.page)" class="page-link" href (click)="selectPage(pg.page, $event)">{{ pg.page + 1 }}</a>
+    </li>
+
+    <li *ngIf="page < (total - 1)" class="pagination-next page-item"
+          [class.disabled]="page == (total - 1)">
+      <a class="page-link" href (click)="selectPage(page + 1, $event)"><span class="glyphicon glyphicon-chevron-right" aria-hidden=true></span></a></li>
+
+    <li class="pagination-last page-item"
+          [class.disabled]="page == (total - 1)">
+      <a class="page-link" href (click)="selectPage(total - 1, $event)"><span class="glyphicon glyphicon-step-forward" aria-hidden=true></span></a></li>
+  </ul>
